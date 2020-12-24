@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.17)
-project(opsa_test)
+project(ThreadPool)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS -pthread)
@@ -10,15 +10,11 @@ add_compile_options(
 )
 
 ## Add headers files
-include_directories (
-        include/
-)
-
 set(HEADERS
-        src/safeQueue/messageQueue.h src/audThread/threadPool.h)
+        src/messageQueue.h src/threadPool.h AuditLog.h)
+## Add sources files
+set(SOURCES test.cpp )
 
-set(SOURCES test.cpp src/safeQueue/messageQueue.cpp src/audThread/threadPool.cpp)
+add_executable(ThreadPool ${HEADERS} ${SOURCES})
 
-add_executable(opsa_test ${HEADERS} ${SOURCES})
-
-target_link_libraries(opsa_test)
+target_link_libraries(ThreadPool)
